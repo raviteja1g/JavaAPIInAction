@@ -6,7 +6,7 @@ You are in right place if
 
 	-- You are looking for some sample codes to run in your local machine to observe the Java API usage working behavior in action
 	-- You are looking for some Java sample code to play around 
-	-- You want to gets hands on with JUnit 5 Test cases
+	-- You want to get hands on with JUnit 5 Test cases
 	
 	
 
