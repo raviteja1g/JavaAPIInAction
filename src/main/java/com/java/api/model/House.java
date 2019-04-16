@@ -24,6 +24,7 @@ public class House {
 		this.space = space;
 	}
 	
+	
 	public static void greetingFromHouse() {
 		logger.debug("Thanks for exploring our Houses");
 	}

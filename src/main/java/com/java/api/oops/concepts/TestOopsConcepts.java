@@ -74,6 +74,16 @@ public class TestOopsConcepts {
 		logger.debug("Validity of instance of, house intance of Aparment: {} ", house instanceof Apartment);
 
 	}
+	
+	@Test
+	public void checkObjectCloning() {
+		House house = new House();
+		Object obj = new Object();
+		
+		// Compile error since clone is a protected method
+		// house.clone();
+		// obj.clone();
+	}
 
 	public void checkingAHouse(House home) {
 		boolean isHomeSecure = ((Apartment) home).isGatedCommunity();
