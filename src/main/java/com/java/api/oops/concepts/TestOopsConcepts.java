@@ -7,10 +7,25 @@ import org.slf4j.LoggerFactory;
 
 import com.java.api.model.Apartment;
 import com.java.api.model.House;
+import com.java.api.oops.concepts.interfaces.PublicAPITestInterface;
+import com.java.api.oops.concepts.interfaces.TestInterface;
 
-public class TestOopsConcepts {
+public class TestOopsConcepts extends AbstractTestClass implements TestInterface, PublicAPITestInterface {
 
 	final Logger logger = LoggerFactory.getLogger(TestOopsConcepts.class);
+
+	/**
+	 * If an implementation exists in both abstract class and an interface as
+	 * default method then Abstract class methods takes precedence
+	 * 
+	 * If you want to call interface default method, you will have use
+	 * InterfaceName.super to access default implementation
+	 */
+	@Test
+	public void testMethodInvocationThatExistsInBothAbstractAndInterfaceAsDefaultMethod() {
+		Assertions.assertEquals(2, this.defaultTestInternalMethod());
+		Assertions.assertEquals(1, PublicAPITestInterface.super.defaultTestInternalMethod());
+	}
 
 	@Test
 	public void testExplicitCasting() {
@@ -42,8 +57,8 @@ public class TestOopsConcepts {
 	@Test
 	public void checkStaticMethodsInerition() {
 		// Static methods are inherited and hidden by subclasses static method with same
-		// signature but not overridden just like fields
-		Apartment.greetingFromHouse(); 
+		// signature but not overridden (just like fields) 
+		Apartment.greetingFromHouse();
 	}
 
 	@Test
@@ -74,12 +89,12 @@ public class TestOopsConcepts {
 		logger.debug("Validity of instance of, house intance of Aparment: {} ", house instanceof Apartment);
 
 	}
-	
+
 	@Test
 	public void checkObjectCloning() {
 		House house = new House();
 		Object obj = new Object();
-		
+
 		// Compile error since clone is a protected method
 		// house.clone();
 		// obj.clone();
@@ -99,5 +114,50 @@ public class TestOopsConcepts {
 			boolean isHomeSecure = Apartment.class.cast(home).isGatedCommunity();
 		}
 	}
+
+	/**
+	 * This method is added only to test that CloneNotSupported Exception will be
+	 * thrown if Cloneble Interface is not implemented
+	 */
+	public CloneableTestClass clone() throws CloneNotSupportedException {
+		return (CloneableTestClass) super.clone();
+	}
+
+	@Override
+	public void parentTestInterfaceMethod() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void publicInterfaceMethod() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void testMethod() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void testAbstractMethod() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void abstractMethod() {
+		// TODO Auto-generated method stub
+
+	}
+	
+	@Override
+	public void defaultTestMethod() {
+		// TODO Auto-generated method stub
+		PublicAPITestInterface.super.defaultTestMethod();
+	}
+
 
 }

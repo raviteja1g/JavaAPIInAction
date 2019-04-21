@@ -1,25 +1,28 @@
 package com.java.api.model;
 
 public class Apartment extends House {
-	
+
 	private final String aptName;
 
 	private boolean gatedCommunity;
 
 	private String floorNumber;
 
+	protected boolean digitalLockAvailable;
+
 	public Apartment() {
 		super();
 		this.aptName = "Anonymous";
 	}
 
-	public Apartment(String aptName, int numberOfRooms, String address, String space, boolean gatedCommunity, String floorNumber) {
+	public Apartment(String aptName, int numberOfRooms, String address, String space, boolean gatedCommunity,
+			String floorNumber) {
 		super(numberOfRooms, address, space);
 		this.aptName = aptName;
 		this.gatedCommunity = gatedCommunity;
 		this.floorNumber = floorNumber;
 	}
-	
+
 	public String getAptName() {
 		return aptName;
 	}
@@ -41,16 +44,24 @@ public class Apartment extends House {
 		return super.numberOfRooms;
 	}
 
+	protected boolean isDigitalLockAvailable() {
+		return digitalLockAvailable;
+	}
+
 	public boolean isGatedCommunity() {
 		return gatedCommunity;
+	}
+
+	protected void setDigitalLockAvailable(boolean digitalLockAvailable) {
+		this.digitalLockAvailable = digitalLockAvailable;
 	}
 
 	public void setFloorNumber(String floorNumber) {
 		this.floorNumber = floorNumber;
 	}
-	
+
 	public void setGatedCommunity(boolean gatedCommunity) {
 		this.gatedCommunity = gatedCommunity;
 	}
-	
+
 }
