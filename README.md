@@ -10,7 +10,9 @@ You are in right place if
 	-- You are looking for some Java sample code to play around 
 	-- You want to get hands on with JUnit 5 Test cases
 	
-Note: This is not a comprehensive coverage of Java API, it only covers some of the topics that a sample test case can provide some clarification.
+Note: This is not a comprehensive coverage of Java API, it only covers some of the topics that a sample program or a test case can provide some clarification.
+
+Few programs are coded with comments around sample code to explain few concepts
 
 
 Tech Stack:-
@@ -26,6 +28,14 @@ Testing:
   
 Logging: 
    Log4j2
+   
+   
+
+References:-
+
+https://www.udemy.com/share/1002aUB0EacFxXQnw=/
+
+
 
 
 
