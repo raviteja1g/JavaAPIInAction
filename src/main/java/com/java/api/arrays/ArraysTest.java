@@ -19,6 +19,8 @@ public class ArraysTest {
 	public void testArrayExceptions() {
 		char[] data = {'h', 'e', 'l', 'l', 'o'};
 		
+		String i = "10";
+		
 		Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
 			data[6] = 'l';
 		});

@@ -1,12 +1,12 @@
 package com.java.api.model;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class House {
-	
+
 	static final Logger logger = LoggerFactory.getLogger(House.class);
-	
+
 	protected int numberOfRooms;
 
 	protected String address;
@@ -23,14 +23,14 @@ public class House {
 		this.address = address;
 		this.space = space;
 	}
-	
-	
+
 	public static void greetingFromHouse() {
 		logger.debug("Thanks for exploring our Houses");
 	}
-	
-	// Irrespective of modifier you cannot have two methods with same name inside same class
-	/* 
+
+	// Irrespective of modifier you cannot have two methods with same name inside
+	// same class
+	/*
 	 * public void greetingFromHouse() {
 	 * logger.debug("Thanks for exploring our Houses"); }
 	 */
@@ -57,10 +57,15 @@ public class House {
 	public void setSpace(String space) {
 		this.space = space;
 	}
-	
-	
+
 	public int getAvgRentalPrice() {
 		logger.debug("Calculating renatl price of House Instance");
 		return this.numberOfRooms * 500;
 	}
+
+	@Override
+	public String toString() {
+		return "House [numberOfRooms=" + numberOfRooms + ", address=" + address + ", space=" + space + "]";
+	}
+
 }

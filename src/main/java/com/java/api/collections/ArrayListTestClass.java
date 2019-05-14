@@ -2,7 +2,9 @@ package com.java.api.collections;
 
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -44,8 +46,22 @@ public class ArrayListTestClass {
 			System.out.println("Original List and Sub list created from it " + originalTestList + testSubList);
 		});
 
-		
-		// Removing the element from an ArrayList within the same Iteration using forEach can throw ConcurrentModification Exception
+	}
+
+	@Test
+	public void testArrayModifications() {
+
+		List<Integer> originalTestList = new ArrayList<Integer>();
+
+		originalTestList.add(1);
+		originalTestList.add(2);
+		originalTestList.add(3);
+		originalTestList.add(4);
+		originalTestList.add(5);
+		originalTestList.add(6);
+
+		// Removing the element from an ArrayList within the same Iteration using
+		// forEach can throw ConcurrentModification Exception
 		Assertions.assertThrows(ConcurrentModificationException.class, () -> {
 			for (Integer test : originalTestList) {
 				if (test == 4) {
@@ -53,8 +69,12 @@ public class ArrayListTestClass {
 				}
 			}
 		});
-		
-		// ConcurrentModification Exception is not always guaranteed and below is the example while removing the element at index of (length of list - 1)
+
+		// ConcurrentModification Exception is not always guaranteed on remove() and
+		// below is the example while removing the element at index of (length of list -
+		// 1).
+		// Below case happens because underlying Iterator being used did not throw this
+		// exception
 		Assertions.assertDoesNotThrow(() -> {
 			for (Integer test : originalTestList) {
 				if (test == 5) {
@@ -63,6 +83,45 @@ public class ArrayListTestClass {
 			}
 		});
 
+		Assertions.assertDoesNotThrow(() -> {
+			Iterator<Integer> iterator = originalTestList.iterator();
+			while (iterator.hasNext()) {
+				int test = iterator.next();
+				if (test == 4) {
+					iterator.remove();
+				}
+			}
+		});
+
+	}
+
+	@Test
+	public void testListIterator() {
+		
+		List<Integer> originalTestList = new ArrayList<Integer>();
+
+		originalTestList.add(1);
+		originalTestList.add(2);
+		originalTestList.add(3);
+		originalTestList.add(4);
+		originalTestList.add(5);
+		originalTestList.add(6);
+		
+		ListIterator<Integer> listIterator = originalTestList.listIterator();
+
+		// For ListIterator, the previous call to remove/set method must be next() or previous() methods
+		Assertions.assertThrows(IllegalStateException.class, () -> {
+			while (listIterator.hasNext()) {
+				int test = listIterator.next();
+				if (test == 4) {
+					listIterator.add(4);
+					// listIterator.remove();
+					listIterator.set(0);
+				}
+			}
+		});
+		
+		logger.debug("Original List after removal of element 4: {}", originalTestList);
 	}
 
 	public void accessIndexBeyondDefaultSize(List<Integer> testList) {
