@@ -30,7 +30,7 @@ public class HashSetTest {
 		// duplicates.
 		// hashCode and equal methods have to be overridden so that both hash values of
 		// the objects will result in same value,
-		// Understand that Hash function value is dependent on the hash code and
+		// Understand that Hash function value is dependent on the hash code (Ex: key.hashCode()) and
 		// comparison of two object values is determined
 		// by equals method by default
 		

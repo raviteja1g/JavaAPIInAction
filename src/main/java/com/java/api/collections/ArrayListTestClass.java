@@ -1,6 +1,7 @@
 package com.java.api.collections;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
@@ -96,6 +97,26 @@ public class ArrayListTestClass {
 	}
 
 	@Test
+	public void testCreateModifiableArrayListFromArrays() {
+		
+		int[] testArrayWithPrimitiveInt = {1,5,4,8,};
+		
+		Integer[] testArray = {1,2,3,4,5};
+		
+		// Arrays are not auto boxable
+		// testArray = testArrayWithPrimitiveInt;
+		
+		List<Integer> testList = Arrays.asList(testArray); // Returns a fixed size list
+		
+		testList = new ArrayList<>(testList); // Modifiable list
+		
+		testList.add(6);
+		
+		logger.debug("Modified List: {}", testList);
+		
+	}
+	
+	@Test
 	public void testListIterator() {
 		
 		List<Integer> originalTestList = new ArrayList<Integer>();
@@ -127,5 +148,7 @@ public class ArrayListTestClass {
 	public void accessIndexBeyondDefaultSize(List<Integer> testList) {
 		testList.subList(0, 1);
 	}
+	
+	
 
 }
